@@ -19,42 +19,42 @@ TEAMS_DATA = {
     },
     "Michigan": {
         "emoji_id": "5256044259445876677",
-        "username": None,  # Укажите Telegram username
+        "username": "ggb74",  # Укажите Telegram username
         "team_index": 3,
     },
     "Ohio State": {
         "emoji_id": "5256227959492091357",
-        "username": None,  # Укажите Telegram username
+        "username": "Archi059",  # Укажите Telegram username
         "team_index": 4,
     },
     "Oregon": {
         "emoji_id": "5253827622529443919",
-        "username": None,  # Укажите Telegram username
+        "username": "Hvosssteg",  # Укажите Telegram username
         "team_index": 5,
     },
     "Miami": {
         "emoji_id": "5253641302553176938",
-        "username": None,  # Укажите Telegram username
+        "username": "Durantulla",  # Укажите Telegram username
         "team_index": 2,
     },
     "Texas Tech": {
         "emoji_id": "5254010111394884083",
-        "username": None,  # Укажите Telegram username
+        "username": "VybornovSV",  # Укажите Telegram username
         "team_index": 7,
     },
     "USC": {
-        "emoji_id": "5253771886738841520",
-        "username": None,  # Укажите Telegram username
+        "emoji_id": "5253697905927169208",
+        "username": "DrobziagoD",  # Укажите Telegram username
         "team_index": 8,
     },
     "Alabama": {
         "emoji_id": "5255994781422623446",
-        "username": None,  # Укажите Telegram username
+        "username": "bernikoww",  # Укажите Telegram username
         "team_index": 9,
     },
     "Florida": {
         "emoji_id": "5253910137441132450",
-        "username": None,  # Укажите Telegram username
+        "username": "Ajoudojuau",  # Укажите Telegram username
         "team_index": 10,
     },
     "LSU": {
@@ -64,7 +64,7 @@ TEAMS_DATA = {
     },
     "Oklahoma": {
         "emoji_id": "5256203508243278219",
-        "username": None,
+        "username": "whateverforeign",
         "team_index": 12,
     },
     "Ole Miss": {
@@ -73,22 +73,13 @@ TEAMS_DATA = {
         "team_index": 13,
     },
     "South Carolina": {
-        "emoji_id": "5253669584912821528",
-        "username": None,
+        "emoji_id": "5253771886738841520",
+        "username": "Captpetrenko",
         "team_index": 14,
     },
     "Texas": {
         "emoji_id": "5253554514149026853",
-        "username": None,
+        "username": "Dimadontpoint",
         "team_index": 15,
     },
 }
-
-teams_number = len(TEAMS_DATA)
-
-
-
-
-
-
-
