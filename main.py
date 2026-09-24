@@ -24,7 +24,7 @@ SCHEDULE =  schedule
 # ──────────────────────────── ДАННЫЕ КОМАНД ────────────────────────────
 TEAMS_DATA = TEAMS_DATA
 
-CHANNEL_ID = "-1002006678390" 
+CHANNEL_ID = getenv("CHANNEL_ID")
 
 
 
