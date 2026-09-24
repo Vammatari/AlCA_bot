@@ -65,7 +65,7 @@ def back_keyboard() -> InlineKeyboardMarkup:
 def week_keyboard(week: str) -> InlineKeyboardMarkup:
     return InlineKeyboardMarkup(
         inline_keyboard=[
-            [InlineKeyboardButton(text="✅ Подтвердить", callback_data=f"confirm:{week}")],
+            # [InlineKeyboardButton(text="✅ Подтвердить", callback_data=f"confirm:{week}")],
             [InlineKeyboardButton(text="◀️ Назад", callback_data="back")],
         ]
     )
@@ -132,28 +132,28 @@ async def back_to_weeks(callback: CallbackQuery):
     await callback.answer()
 
 
-@dp.callback_query(F.data.startswith("confirm:"))
-async def confirm_week(callback: CallbackQuery, bot: Bot):
-    week = callback.data.split(":", 1)[1]
+# @dp.callback_query(F.data.startswith("confirm:"))
+# async def confirm_week(callback: CallbackQuery, bot: Bot):
+#     week = callback.data.split(":", 1)[1]
 
-    # 1. Редактируем сообщение в чате с ботом
-    await callback.message.edit_text(
-        render_week(week, header=f"<b>{week}</b>"),
-        reply_markup=back_keyboard(),
-        link_preview_options=LinkPreviewOptions(is_disabled=True),
-    )
+#     # 1. Редактируем сообщение в чате с ботом
+#     await callback.message.edit_text(
+#         render_week(week, header=f"<b>{week}</b>"),
+#         reply_markup=back_keyboard(),
+#         link_preview_options=LinkPreviewOptions(is_disabled=True),
+#     )
 
-    # 2. Публикуем в канал
-    try:
-        await bot.send_message(
-            chat_id=CHANNEL_ID,
-            text=render_week(week), #, header=f"🏈 <b>{week}</b>"),
-            link_preview_options=LinkPreviewOptions(is_disabled=True),
-        )
-        await callback.answer("Опубликовано в канал ✅")
-    except Exception as e:
-        logging.exception("Ошибка публикации в канал")
-        await callback.answer(f"Не удалось опубликовать: {e}", show_alert=True)
+#     # 2. Публикуем в канал
+#     try:
+#         await bot.send_message(
+#             chat_id=CHANNEL_ID,
+#             text=render_week(week), #, header=f"🏈 <b>{week}</b>"),
+#             link_preview_options=LinkPreviewOptions(is_disabled=True),
+#         )
+#         await callback.answer("Опубликовано в канал ✅")
+#     except Exception as e:
+#         logging.exception("Ошибка публикации в канал")
+#         await callback.answer(f"Не удалось опубликовать: {e}", show_alert=True)
 
 
 @dp.message(F.text)
