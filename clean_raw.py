@@ -1,7 +1,7 @@
 import pandas as pd
 from raw_connect import fetch_sheet_data
 from utilities import clean_cell
-from teams_config import  TEAMS_DATA
+from teams_config import TEAMS_DATA
 
 data = fetch_sheet_data()
 
@@ -57,4 +57,3 @@ def make_a_schedule(df, teams_dict):
 
 schedule = make_a_schedule(clear_table_data(data, len(TEAMS_DATA)), TEAMS_DATA)
 
-print(schedule)  # Выводим расписание для проверки
