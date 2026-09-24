@@ -156,16 +156,16 @@ async def back_to_weeks(callback: CallbackQuery):
 #         await callback.answer(f"Не удалось опубликовать: {e}", show_alert=True)
 
 
-@dp.message(F.text)
-async def catch_custom_emoji_id(message: types.Message):
-    """Ловит ID кастомного эмодзи, если он отправлен в тексте"""
-    if message.entities:
-        for entity in message.entities:
-            if entity.type == "custom_emoji":
-                await message.answer(
-                    f"ID этого кастомного эмодзи:\n\n<code>{entity.custom_emoji_id}</code>"
-                )
-                return
+# @dp.message(F.text)
+# async def catch_custom_emoji_id(message: types.Message):
+#     """Ловит ID кастомного эмодзи, если он отправлен в тексте"""
+#     if message.entities:
+#         for entity in message.entities:
+#             if entity.type == "custom_emoji":
+#                 await message.answer(
+#                     f"ID этого кастомного эмодзи:\n\n<code>{entity.custom_emoji_id}</code>"
+#                 )
+#                 return
 
 # ──────────────────────────── ЗАПУСК ────────────────────────────
 async def main():
