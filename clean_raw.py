@@ -1,7 +1,7 @@
 import pandas as pd
 from raw_connect import fetch_sheet_data
 from utilities import clean_cell
-from alca_teams import teams_number, TEAM_INDEXES
+from teams_config import  TEAMS_DATA
 
 data = fetch_sheet_data()
 
@@ -33,6 +33,7 @@ def make_a_schedule(df, teams_dict):
         
         # Проходим по каждому столбцу из словаря команд
         for team_in_col, col_idx,  in teams_dict.items():
+            col_idx = col_idx["team_index"]
             if col_idx in df.columns:
                 opponent = row[col_idx]
                 
@@ -54,6 +55,6 @@ def make_a_schedule(df, teams_dict):
     return weekly_matchups
 
 
-schedule = make_a_schedule(clear_table_data(data, teams_number), TEAM_INDEXES)
+schedule = make_a_schedule(clear_table_data(data, len(TEAMS_DATA)), TEAMS_DATA)
 
-# print(schedule)  # Выводим расписание для проверки
+print(schedule)  # Выводим расписание для проверки

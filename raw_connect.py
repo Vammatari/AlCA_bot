@@ -18,5 +18,6 @@ def fetch_sheet_data():
     sh = gc.open_by_key(SPREADSHEET_ID)
     worksheet = sh.sheet1
     # worksheet = sh.get_worksheet(0)
-    return worksheet.get_all_values()
+    raw_data = worksheet.get_all_values()
+    return raw_data
 

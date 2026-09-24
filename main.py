@@ -2,10 +2,10 @@ import asyncio
 import logging
 from os import getenv
 from clean_raw import schedule
-from aiogram import Bot, Dispatcher, F
+from aiogram import Bot, Dispatcher, F, types
 from aiogram.client.default import DefaultBotProperties
 from aiogram.enums import ParseMode
-from aiogram.filters import CommandStart
+from aiogram.filters import CommandStart, Command
 from teams_config import TEAMS_DATA
 from aiogram.types import (
     Message,
@@ -16,6 +16,7 @@ from aiogram.types import (
 )
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from middlewares import AccessMiddleware
+from aiogram.fsm.context import FSMContext
 TOKEN = getenv("BOT_TOKEN")
 
 # ──────────────────────────── РАСПИСАНИЕ ────────────────────────────
@@ -100,7 +101,18 @@ async def cmd_start(message: Message):
         reply_markup=weeks_keyboard(),
     )
 
+@dp.message(Command("restart"))
+async def cmd_restart(message: types.Message, state: FSMContext):
+  # 1. Очищаем текущее состояние машины состояний (если оно было)
+  await state.clear()
 
+  # 2. Отправляем сообщение о перезапуске
+  await message.answer(
+      "🔄 Бот успешно перезапущен!\nВсе прошлые данные сессии сброшены."
+  )
+
+  # (Опционально) Можно сразу вызвать логику команды /start
+  await message.answer("Введите /start для начала работы.")
 @dp.callback_query(F.data.startswith("week:"))
 async def show_week(callback: CallbackQuery):
     week = callback.data.split(":", 1)[1]

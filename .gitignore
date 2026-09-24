@@ -3,4 +3,4 @@ __pycache__/
 design/
 credentials.json
 *.pyc
-
+.DS_Store
