@@ -1,5 +1,5 @@
 import asyncio
-import logging
+# import logging
 from os import getenv
 from clean_raw import schedule
 from aiogram import Bot, Dispatcher, F, types
@@ -17,6 +17,7 @@ from aiogram.types import (
 from aiogram.utils.keyboard import InlineKeyboardBuilder
 from middlewares import AccessMiddleware
 from aiogram.fsm.context import FSMContext
+from aiogram.exceptions import TelegramBadRequest
 TOKEN = getenv("BOT_TOKEN")
 
 # ──────────────────────────── РАСПИСАНИЕ ────────────────────────────
@@ -75,14 +76,21 @@ def week_keyboard(week: str) -> InlineKeyboardMarkup:
 def render_week(week: str, header: str | None = None) -> str:
     """Собирает текст недели: каждая пара команд — на своей строке."""
     matches = SCHEDULE.get(week, [])
-    lines = [header or f"<b>{week}</b>"]
+    # lines = [header or f"{header_emoji} Лига шагнула в {week} {header_emoji}\n"]
+    lines = []
     if matches:
         header_emoji_id = "5375303625671216883"
         header_emoji = f'<tg-emoji emoji-id="{header_emoji_id}">🏈</tg-emoji>'
         lines.append(f"{header_emoji} Лига шагнула в {week} {header_emoji}\n")
         for match in matches:
+
+
+
             team1, team2 = match[0], match[1]
-            lines.append(f"{team_display(team1)} @ {team_display(team2)}")
+            if team1 == "Georgia" or team2 == 'Geogia':
+                pass
+            else:
+                lines.append(f"{team_display(team1)} @ {team_display(team2)}")
         lines.append("\nАнонсы матчей указывайте в комментариях к данному посту.")
     else:
         lines.append("")
@@ -96,23 +104,41 @@ dp = Dispatcher()
 
 @dp.message(CommandStart())
 async def cmd_start(message: Message):
+
     await message.answer(
         "Выберите неделю:",
         reply_markup=weeks_keyboard(),
+
     )
 
-@dp.message(Command("restart"))
-async def cmd_restart(message: types.Message, state: FSMContext):
-  # 1. Очищаем текущее состояние машины состояний (если оно было)
-  await state.clear()
 
-  # 2. Отправляем сообщение о перезапуске
-  await message.answer(
-      "🔄 Бот успешно перезапущен!\nВсе прошлые данные сессии сброшены."
-  )
+# @dp.message(CommandStart())
+# async def cmd_start(message: Message):
+#     print(">>> /start получен")          # видно в консоли
+#     sent = await message.answer("Привет! 👋")   # сначала ОТПРАВЛЯЕМ
+#     print(">>> отправлено:", sent.message_id)
+#     try:
+#         await message.delete()            # потом удаляем /start
+#         print(">>> /start удалён")
+#     except Exception as e:
+#         print(">>> не удалил /start:", e)
 
-  # (Опционально) Можно сразу вызвать логику команды /start
-  await message.answer("Введите /start для начала работы.")
+
+
+
+# @dp.message(Command("restart"))
+# async def cmd_restart(message: types.Message, state: FSMContext):
+#     # 1. Очищаем текущее состояние машины состояний (если оно было)
+#     await state.clear()
+
+#     # 2. Отправляем сообщение о перезапуске
+#     await message.answer(
+#         "🔄 Бот успешно перезапущен!\nВсе прошлые данные сессии сброшены."
+#     )
+
+#     # (Опционально) Можно сразу вызвать логику команды /start
+#     await message.answer("Введите /start для начала работы.")
+
 @dp.callback_query(F.data.startswith("week:"))
 async def show_week(callback: CallbackQuery):
     week = callback.data.split(":", 1)[1]
@@ -191,5 +217,6 @@ async def main():
 
 
 if __name__ == "__main__":
+    import logging
     logging.basicConfig(level=logging.INFO)
     asyncio.run(main())
