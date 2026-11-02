@@ -37,11 +37,11 @@ TEAMS_DATA = {
         "username": "Durantulla",  # Укажите Telegram username
         "team_index": 2,
     },
-    "Texas Tech": {
-        "emoji_id": "5254010111394884083",
-        "username": "VybornovSV",  # Укажите Telegram username
-        "team_index": 7,
-    },
+    # "Texas Tech": {
+    #     "emoji_id": "5254010111394884083",
+    #     "username": "VybornovSV",  # Укажите Telegram username
+    #     "team_index": 7,
+    # },
     "USC": {
         "emoji_id": "5253697905927169208",
         "username": "DrobziagoD",  # Укажите Telegram username
@@ -60,26 +60,36 @@ TEAMS_DATA = {
     "LSU": {
         "emoji_id": "5253669314329879481",
         "username": "StasVII",
-        "team_index": 11,
+        "team_index": 12,
     },
     "Oklahoma": {
         "emoji_id": "5256203508243278219",
         "username": "whateverforeign",
-        "team_index": 12,
+        "team_index": 13,
     },
     "Ole Miss": {
         "emoji_id": "5253588233937262567",
         "username": "mahomes15",
-        "team_index": 13,
+        "team_index": 14,
     },
     "South Carolina": {
         "emoji_id": "5253771886738841520",
         "username": "Captpetrenko",
-        "team_index": 14,
+        "team_index": 15,
     },
     "Texas": {
         "emoji_id": "5253554514149026853",
         "username": "Dimadontpoint",
-        "team_index": 15,
+        "team_index": 16,
     },
+    "Georgia": {
+        "emoji_id": "5371071536696436713",
+        "username": "Vammatari",
+        "team_index": 11,
+    },
+    "Notre Dame": {
+        "emoji_id": "5397639500014855352",
+        "username": "s_a_gromov",
+        "team_index": 7,
+    }
 }

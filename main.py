@@ -87,7 +87,7 @@ def render_week(week: str, header: str | None = None) -> str:
 
 
             team1, team2 = match[0], match[1]
-            if team1 == "Georgia" or team2 == 'Geogia':
+            if team1 == "USC" or team2 == 'USC':
                 pass
             else:
                 lines.append(f"{team_display(team1)} @ {team_display(team2)}")
@@ -111,33 +111,6 @@ async def cmd_start(message: Message):
 
     )
 
-
-# @dp.message(CommandStart())
-# async def cmd_start(message: Message):
-#     print(">>> /start получен")          # видно в консоли
-#     sent = await message.answer("Привет! 👋")   # сначала ОТПРАВЛЯЕМ
-#     print(">>> отправлено:", sent.message_id)
-#     try:
-#         await message.delete()            # потом удаляем /start
-#         print(">>> /start удалён")
-#     except Exception as e:
-#         print(">>> не удалил /start:", e)
-
-
-
-
-# @dp.message(Command("restart"))
-# async def cmd_restart(message: types.Message, state: FSMContext):
-#     # 1. Очищаем текущее состояние машины состояний (если оно было)
-#     await state.clear()
-
-#     # 2. Отправляем сообщение о перезапуске
-#     await message.answer(
-#         "🔄 Бот успешно перезапущен!\nВсе прошлые данные сессии сброшены."
-#     )
-
-#     # (Опционально) Можно сразу вызвать логику команды /start
-#     await message.answer("Введите /start для начала работы.")
 
 @dp.callback_query(F.data.startswith("week:"))
 async def show_week(callback: CallbackQuery):
@@ -168,31 +141,6 @@ async def back_to_weeks(callback: CallbackQuery):
         link_preview_options=LinkPreviewOptions(is_disabled=True),
     )
     await callback.answer()
-
-
-# @dp.callback_query(F.data.startswith("confirm:"))
-# async def confirm_week(callback: CallbackQuery, bot: Bot):
-#     week = callback.data.split(":", 1)[1]
-
-#     # 1. Редактируем сообщение в чате с ботом
-#     await callback.message.edit_text(
-#         render_week(week, header=f"<b>{week}</b>"),
-#         reply_markup=back_keyboard(),
-#         link_preview_options=LinkPreviewOptions(is_disabled=True),
-#     )
-
-#     # 2. Публикуем в канал
-#     try:
-#         await bot.send_message(
-#             chat_id=CHANNEL_ID,
-#             text=render_week(week), #, header=f"🏈 <b>{week}</b>"),
-#             link_preview_options=LinkPreviewOptions(is_disabled=True),
-#         )
-#         await callback.answer("Опубликовано в канал ✅")
-#     except Exception as e:
-#         logging.exception("Ошибка публикации в канал")
-#         await callback.answer(f"Не удалось опубликовать: {e}", show_alert=True)
-
 
 # @dp.message(F.text)
 # async def catch_custom_emoji_id(message: types.Message):

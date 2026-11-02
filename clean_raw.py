@@ -1,9 +1,16 @@
+import os
+from dotenv import load_dotenv
 import pandas as pd
 from raw_connect import fetch_sheet_data
 from utilities import clean_cell
 from teams_config import TEAMS_DATA
+load_dotenv()
 
-data = fetch_sheet_data()
+SPREADSHEET_ID = os.getenv("SPREADSHEET_ID")  
+
+CREDENTIALS_FILE = os.getenv("GOOGLE_SERVICE_ACCOUNT_JSON")
+
+data = fetch_sheet_data(CREDENTIALS_FILE, SPREADSHEET_ID)
 
 
 
@@ -57,3 +64,4 @@ def make_a_schedule(df, teams_dict):
 
 schedule = make_a_schedule(clear_table_data(data, len(TEAMS_DATA)), TEAMS_DATA)
 
+print(schedule)
